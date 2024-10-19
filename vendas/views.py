@@ -13,7 +13,7 @@ def list_vendedores(request):
 
 def list_veiculos(request):
     veiculos = Veiculo.objects.all()
-    return render(request, 'vendas/list_carros.html', {'veiculos': veiculos})
+    return render(request, 'vendas/list_veiculos.html', {'veiculos': veiculos})
 
 def list_vendas(request):
     vendas = Venda.objects.select_related('vendedor', 'carro').all()

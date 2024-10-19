@@ -17,7 +17,7 @@ class Veiculo(models.Model):
 
 class Venda(models.Model):
     vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
-    carro = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
     data_venda = models.DateField(auto_now_add=True)
     quantidade = models.PositiveIntegerField(default=1)
     

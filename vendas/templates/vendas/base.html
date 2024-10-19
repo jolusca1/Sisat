@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <title>Controle de Vendas</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url 'vendas:index' %}">Controle de Vendas</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'vendas:list_vendedores' %}">Vendedores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'vendas:list_veiculos' %}">Veículos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'vendas:list_vendas' %}">Vendas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'vendas:add_venda' %}">Adicionar Venda</a></li>
+                    {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'vendas:relatorios' %}">Relatórios</a></li> {% endcomment %}
+                </ul>
+            </div>
+        </nav>
+        <div class="container mt-4">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

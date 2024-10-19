@@ -1,0 +1,23 @@
+{% extends 'vendas/base.html' %}
+
+{% block content %}
+<h2>Lista de Carros</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Modelo</th>
+            <th>Preço</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for carro in carros %}
+        <tr>
+            <td>{{ carro.id }}</td>
+            <td>{{ carro.modelo }}</td>
+            <td>R$ {{ carro.preco }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

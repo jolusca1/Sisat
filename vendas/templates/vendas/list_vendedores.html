@@ -1,0 +1,21 @@
+{% extends "vendas/base.html" %}
+
+{% block content %}
+<h2>Lista de Vendedores</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vendedor in vendedores %}
+        <tr>
+            <td>{{ vendedor.id }}</td>
+            <td>{{ vendedor.nome }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
