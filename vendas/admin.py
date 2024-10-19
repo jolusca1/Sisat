@@ -14,4 +14,4 @@ class VeiculoAdmin(admin.ModelAdmin):
 class VendaAdmin(admin.ModelAdmin):
     list_display = ('id', 'vendedor', 'veiculo', 'quantidade', 'data_venda', 'valor_total')
     list_filter = ('data_venda', 'vendedor')
-    search_fields = ('vendedor__nome', 'carro__modelo')
+    search_fields = ('vendedor__nome', 'veiculo__modelo')

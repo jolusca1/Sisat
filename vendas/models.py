@@ -18,12 +18,12 @@ class Veiculo(models.Model):
 class Venda(models.Model):
     vendedor = models.ForeignKey(Vendedor, on_delete=models.CASCADE)
     veiculo = models.ForeignKey(Veiculo, on_delete=models.CASCADE)
-    data_venda = models.DateField(auto_now_add=True)
+    data_venda = models.DateField() 
     quantidade = models.PositiveIntegerField(default=1)
     
     @property
     def valor_total(self):
-        return self.quantidade * self.carro.valor
+        return self.quantidade * self.veiculo.valor
     
     def __str__(self):
-        return f"{self.vendedor.nome} - {self.carro.modelo} - {self.data_venda}"
+        return f"{self.vendedor.nome} - {self.veiculo.modelo} - {self.data_venda}"

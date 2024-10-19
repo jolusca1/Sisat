@@ -1,7 +1,7 @@
 {% extends 'vendas/base.html' %}
 
 {% block content %}
-<h2>Lista de Carros</h2>
+<h2>Lista de Veículos</h2>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -11,11 +11,11 @@
         </tr>
     </thead>
     <tbody>
-        {% for carro in carros %}
+        {% for veiculo in veiculos %}
         <tr>
-            <td>{{ carro.id }}</td>
-            <td>{{ carro.modelo }}</td>
-            <td>R$ {{ carro.preco }}</td>
+            <td>{{ veiculo.id }}</td>
+            <td>{{ veiculo.modelo }}</td>
+            <td>R$ {{ veiculo.valor }}</td>
         </tr>
         {% endfor %}
     </tbody>
