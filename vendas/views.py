@@ -26,6 +26,21 @@ def add_vendedor(request):
 
 def list_veiculos(request):
     veiculos = Veiculo.objects.all()
+
+    # Capturando os filtros da requisição
+    fabricante = request.GET.get('fabricante')
+    ano_fabricacao = request.GET.get('ano_fabricacao')
+    tipo_combustivel = request.GET.get('tipo_combustivel')
+
+    if fabricante:
+        veiculos = veiculos.filter(fabricante__icontains=fabricante)
+    
+    if ano_fabricacao:
+        veiculos = veiculos.filter(ano_fabricacao=ano_fabricacao)
+    
+    if tipo_combustivel:
+        veiculos = veiculos.filter(tipo_combustivel=tipo_combustivel)
+
     return render(request, 'vendas/list_veiculos.html', {'veiculos': veiculos})
 
 def add_veiculo(request):
@@ -41,8 +56,33 @@ def add_veiculo(request):
         
 
 def list_vendas(request):
-    vendas = Venda.objects.select_related('vendedor', 'veiculo').all()
-    return render(request, 'vendas/list_vendas.html', {'vendas': vendas})
+    vendas = Venda.objects.all()
+    vendedores = Vendedor.objects.all()
+
+    # Capturando os parâmetros de filtro
+    vendedor = request.GET.get('vendedor')
+    veiculo = request.GET.get('veiculo')
+    data_venda = request.GET.get('data_venda')
+    valor_min = request.GET.get('valor_min')
+    valor_max = request.GET.get('valor_max')
+
+    # Aplicando os filtros, se fornecidos
+    if vendedor:
+        vendas = vendas.filter(vendedor__id=vendedor)
+    
+    if veiculo:
+        vendas = vendas.filter(veiculo__modelo__icontains=veiculo)
+
+    if data_venda:
+        vendas = vendas.filter(data_venda=data_venda)
+
+    if valor_min:
+        vendas = vendas.filter(valor_total__gte=valor_min)
+
+    if valor_max:
+        vendas = vendas.filter(valor_total__lte=valor_max)
+
+    return render(request, 'vendas/list_vendas.html', {'vendas': vendas, 'vendedores': vendedores})
 
 def add_venda(request):
     if request.method == 'POST':

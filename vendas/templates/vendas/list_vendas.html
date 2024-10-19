@@ -2,6 +2,39 @@
 
 {% block content %}
 <h2>Lista de Vendas</h2>
+
+<!-- Formulário de Filtros -->
+<form method="GET" class="mb-4">
+    <div class="form-row">
+        <div class="col">
+            <select name="vendedor" class="form-control">
+                <option value="">Todos</option>
+                {% for v in vendedores %}
+                <option value="{{ v.id }}" {% if request.GET.vendedor == v.id|stringformat:"s" %}selected{% endif %}>
+                    {{ v.nome }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col">
+            <input type="text" name="veiculo" class="form-control" placeholder="Modelo do Veículo" value="{{ request.GET.veiculo }}">
+        </div>
+        <div class="col">
+            <input type="date" name="data_venda" class="form-control" placeholder="Data da Venda" value="{{ request.GET.data_venda }}">
+        </div>
+        <div class="col">
+            <input type="number" name="valor_min" class="form-control" placeholder="Valor Mínimo" value="{{ request.GET.valor_min }}">
+        </div>
+        <div class="col">
+            <input type="number" name="valor_max" class="form-control" placeholder="Valor Máximo" value="{{ request.GET.valor_max }}">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+<!-- Tabela de Vendas -->
 <table class="table table-striped">
     <thead>
         <tr>
@@ -21,7 +54,11 @@
             <td>{{ venda.veiculo.modelo }}</td>
             <td>{{ venda.quantidade }}</td>
             <td>{{ venda.data_venda }}</td>
-            <td>R$ {{ venda.valor_total }}</td>
+            <td>R$ {{ venda.valor_total|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">Nenhuma venda encontrada.</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -2,11 +2,42 @@
 
 {% block content %}
 <h2>Lista de Veículos</h2>
+
+<!-- Formulário de Filtro -->
+<form method="GET" class="mb-4">
+    <div class="form-row">
+        <div class="col">
+            <input type="text" name="fabricante" class="form-control" placeholder="Fabricante" value="{{ request.GET.fabricante }}">
+        </div>
+        <div class="col">
+            <input type="number" name="ano_fabricacao" class="form-control" placeholder="Ano de Fabricação" value="{{ request.GET.ano_fabricacao }}">
+        </div>
+        <div class="col">
+            <select name="tipo_combustivel" class="form-control">
+                <option value="">Todos os combustíveis</option>
+                <option value="Gasolina" {% if request.GET.tipo_combustivel == "Gasolina" %}selected{% endif %}>Gasolina</option>
+                <option value="Diesel" {% if request.GET.tipo_combustivel == "Diesel" %}selected{% endif %}>Diesel</option>
+                <option value="Etanol" {% if request.GET.tipo_combustivel == "Etanol" %}selected{% endif %}>Etanol</option>
+                <option value="Elétrico" {% if request.GET.tipo_combustivel == "Elétrico" %}selected{% endif %}>Elétrico</option>
+                <option value="Híbrido" {% if request.GET.tipo_combustivel == "Híbrido" %}selected{% endif %}>Híbrido</option>
+            </select>
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+<!-- Tabela de Veículos -->
 <table class="table table-striped">
     <thead>
         <tr>
             <th>ID</th>
             <th>Modelo</th>
+            <th>Fabricante</th>
+            <th>Ano de Fabricação</th>
+            <th>Placa</th>
+            <th>Tipo de Combustível</th>
             <th>Preço</th>
         </tr>
     </thead>
@@ -15,7 +46,15 @@
         <tr>
             <td>{{ veiculo.id }}</td>
             <td>{{ veiculo.modelo }}</td>
-            <td>R$ {{ veiculo.valor }}</td>
+            <td>{{ veiculo.fabricante }}</td>
+            <td>{{ veiculo.ano_fabricacao }}</td>
+            <td>{{ veiculo.placa }}</td>
+            <td>{{ veiculo.tipo_combustivel }}</td>
+            <td>R$ {{ veiculo.valor|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">Nenhum veículo encontrado.</td>
         </tr>
         {% endfor %}
     </tbody>
