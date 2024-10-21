@@ -1,0 +1,91 @@
+{% extends 'vendas/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Veículo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Cadastro de Veículo</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <!-- Campo para Modelo -->
+            <div class="form-group">
+                <label for="id_modelo">Modelo</label>
+                {{ form.modelo }}
+            </div>
+
+            <!-- Campo para Fabricante -->
+            <div class="form-group">
+                <label for="id_fabricante">Fabricante</label>
+                {{ form.fabricante }}
+            </div>
+
+            <!-- Campo para Ano de Fabricação -->
+            <div class="form-group">
+                <label for="id_ano_fabricacao">Ano de Fabricação</label>
+                {{ form.ano_fabricacao }}
+            </div>
+
+            <!-- Campo para Ano do Modelo -->
+            <div class="form-group">
+                <label for="id_ano_modelo">Ano do Modelo</label>
+                {{ form.ano_modelo }}
+            </div>
+
+            <!-- Campo para Placa -->
+            <div class="form-group">
+                <label for="id_placa">Placa</label>
+                {{ form.placa }}
+            </div>
+
+            <!-- Campo para Valor -->
+            <div class="form-group">
+                <label for="id_valor">Valor</label>
+                {{ form.valor }}
+            </div>
+
+            <!-- Campo para Cor -->
+            <div class="form-group">
+                <label for="id_cor">Cor</label>
+                {{ form.cor }}
+            </div>
+
+            <!-- Campo para Tipo de Combustível -->
+            <div class="form-group">
+                <label for="id_tipo_combustivel">Tipo de Combustível</label>
+                {{ form.tipo_combustivel }}
+            </div>
+
+            <!-- Campo para Quilometragem -->
+            <div class="form-group">
+                <label for="id_quilometragem">Quilometragem</label>
+                {{ form.quilometragem }}
+            </div>
+
+            <!-- Campo para Chassi -->
+            <div class="form-group">
+                <label for="id_chassi">Número do Chassi</label>
+                {{ form.chassi }}
+            </div>
+
+            <!-- Campo para Categoria -->
+            <div class="form-group">
+                <label for="id_categoria">Categoria</label>
+                {{ form.categoria }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Salvar</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

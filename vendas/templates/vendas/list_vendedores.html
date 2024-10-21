@@ -1,0 +1,39 @@
+{% extends "vendas/base.html" %}
+
+{% block content %}
+<h2>Lista de Vendedores</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Cpf</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Data de Contratação</th>
+            <th>Endereço</th>
+            <th>Ativo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for vendedor in vendedores %}
+        <tr>
+            <td>{{ vendedor.id }}</td>
+            <td>{{ vendedor.nome }}</td>
+            <td>{{ vendedor.cpf }}</td>
+            <td>{{ vendedor.email }}</td>
+            <td>{{ vendedor.telefone }}</td>
+            <td>{{ vendedor.data_contratacao }}</td>
+            <td>{{ vendedor.endereco }}</td>
+            <td>
+                {% if vendedor.ativo %}
+                    <i class="fas fa-check-circle text-success"></i>
+                {% else %}
+                    <i class="fas fa-times-circle text-danger"></i>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
