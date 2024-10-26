@@ -51,7 +51,7 @@ class Veiculo(models.Model):
     categoria = models.CharField(max_length=20, choices=MODELO_CHOICES, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.fabricante} {self.modelo} ({self.ano_modelo})"
+        return f"{self.fabricante} {self.modelo} - {self.placa} ({self.ano_modelo})"
 
 
 from django.db import models

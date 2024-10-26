@@ -6,7 +6,7 @@ from random import choice
 from vendas.models import Vendedor
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'seu_projeto.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'vendas.settings')
 django.setup()
 
 def criar_vendedores(n):
