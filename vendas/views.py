@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
-from django.db.models import Sum, F, FloatField
+from django.core.paginator import Paginator
 from django.contrib import messages
 from .models import Vendedor, Veiculo, Venda
 from .forms import VendaForm, VendedorForm, VeiculoForm
-import pdb
 
 
 def index(request):
@@ -11,7 +10,10 @@ def index(request):
 
 def list_vendedores(request):
     vendedores = Vendedor.objects.all()
-    return render(request, 'vendas/list_vendedores.html', {'vendedores': vendedores})
+    paginator = Paginator(vendedores, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'vendas/list_vendedores.html', {'page_obj': page_obj})
 
 def add_vendedor(request):
     if request.method == 'POST':

@@ -73,8 +73,12 @@
 
         <script>
             $(document).ready(function() {
+
                 $('#id_cpf').mask('999.999.999-99', { reverse: false });
+                $('.id_cpf').mask('999.999.999-99', { reverse: false });
+                
                 $('#id_telefone').mask('(00) 00000-0000');
+                $('.id_telefone').mask('(00) 00000-0000');
 
                 $('form').on('submit', function() {
                     var cpfField = $('#id_cpf');

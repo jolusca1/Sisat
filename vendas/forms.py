@@ -52,7 +52,7 @@ class VendedorForm(forms.ModelForm):
         }
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'cpf': forms.TextInput(attrs={'class': 'form-control mask-cpf', 'placeholder': 'Digite o CPF'}),
+            'cpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o CPF'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite o e-mail'}),
             'telefone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o telefone'}),
             'data_contratacao': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
