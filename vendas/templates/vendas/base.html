@@ -14,24 +14,6 @@
         </style>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/cpf-cnpj-validator/dist/jquery.cpfcnpj.min.js"></script>
-
-        <script type="text/javascript">
-            $(document).ready(function(){
-        
-                $('#id_cpf').on('input', function() {
-                    var cpf = $(this).val();
-        
-                    if (!$.cpfcnpj.validate(cpf)) {
-                        $('#cpf-error').show();
-                        $(this).removeClass('is-valid').addClass('is-invalid');
-                    } else {
-                        $('#cpf-error').hide();
-                        $(this).removeClass('is-invalid').addClass('is-valid');
-                    }
-                });
-            });
-        </script>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -88,6 +70,29 @@
             {% block content %}
             {% endblock %}
         </div>
+
+        <script>
+            $(document).ready(function() {
+
+                $('#id_cpf').mask('999.999.999-99', { reverse: false });
+                $('.id_cpf').mask('999.999.999-99', { reverse: false });
+                
+                $('#id_telefone').mask('(00) 00000-0000');
+                $('.id_telefone').mask('(00) 00000-0000');
+
+                $('form').on('submit', function() {
+                    var cpfField = $('#id_cpf');
+                    var cpfValue = cpfField.val();
+                    cpfValue = cpfValue.replace(/\D/g, '');
+                    cpfField.val(cpfValue);
+
+                    var telefoneField = $('#id_telefone');
+                    var telefoneValue = telefoneField.val();
+                    telefoneValue = telefoneValue.replace(/\D/g, '');
+                    telefoneField.val(telefoneValue);
+                });
+            });
+        </script>
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
