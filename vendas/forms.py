@@ -36,6 +36,7 @@ class VendaForm(forms.ModelForm):
             }),
         }
         
+        
 class VendedorForm(forms.ModelForm):
     class Meta:
         model = Vendedor
@@ -51,7 +52,7 @@ class VendedorForm(forms.ModelForm):
         }
         widgets = {
             'nome': forms.TextInput(attrs={'class': 'form-control'}),
-            'cpf': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o CPF'}),
+            'cpf': forms.TextInput(attrs={'class': 'form-control mask-cpf', 'placeholder': 'Digite o CPF'}),
             'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Digite o e-mail'}),
             'telefone': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Digite o telefone'}),
             'data_contratacao': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
@@ -61,12 +62,13 @@ class VendedorForm(forms.ModelForm):
         
     def clean_cpf(self):
         cpf = self.cleaned_data['cpf']
-        cpf = re.sub(r'\D', '', cpf)
+        cpf = re.sub(r'\D', '', cpf)  # Remove todos os caracteres não numéricos
 
         if len(cpf) != 11:
-            raise forms.ValidationError("Digite um CPF válido.")
+            raise forms.ValidationError("Digite um CPF válido com 11 dígitos.")
 
         return cpf
+    
         
 class VeiculoForm(forms.ModelForm):
     class Meta:

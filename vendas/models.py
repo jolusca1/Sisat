@@ -2,12 +2,15 @@ from django.db import models
 from django.core.validators import RegexValidator, MinLengthValidator
 
 
+from django.core.validators import RegexValidator
+from django.db import models
+
 class Vendedor(models.Model):
     nome = models.CharField(max_length=150)
     cpf = models.CharField(
         max_length=11, 
         unique=True, 
-        validators=[RegexValidator(r'^\d{3}\.\d{3}\.\d{3}-\d{2}$', 'Digite um CPF válido.')]
+        validators=[RegexValidator(r'^\d{11}$', 'Digite um CPF válido com 11 dígitos.')]
     )
     email = models.EmailField(max_length=255, unique=True)
     telefone = models.CharField(
@@ -18,9 +21,9 @@ class Vendedor(models.Model):
     endereco = models.CharField(max_length=255, null=True, blank=True)
     ativo = models.BooleanField(default=True)
     
-    def formatar_cpf(self):
-        cpf = self.cpf
-        return f'{cpf[:3]}.{cpf[3:6]}.{cpf[6:9]}-{cpf[9:]}'
+    def clean(self):
+        """Remove qualquer pontuação do CPF antes de salvar."""
+        self.cpf = self.cpf.replace('.', '').replace('-', '')
 
     def __str__(self):
         return f"{self.nome} ({self.cpf})"

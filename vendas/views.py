@@ -3,6 +3,7 @@ from django.db.models import Sum, F, FloatField
 from django.contrib import messages
 from .models import Vendedor, Veiculo, Venda
 from .forms import VendaForm, VendedorForm, VeiculoForm
+import pdb
 
 
 def index(request):

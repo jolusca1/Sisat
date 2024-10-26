@@ -7,26 +7,44 @@
     <div class="form-group">
         {{ form.nome.label_tag }}
         {{ form.nome }}
+        {% if form.nome.errors %}
+            <div class="error">{{ form.nome.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-group">
         {{ form.cpf.label_tag }}
         {{ form.cpf }}
+        {% if form.cpf.errors %}
+            <div class="error">{{ form.cpf.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-group">
         {{ form.email.label_tag }}
         {{ form.email }}
+        {% if form.email.errors %}
+            <div class="error">{{ form.email.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-group">
         {{ form.telefone.label_tag }}
         {{ form.telefone }}
+        {% if form.telefone.errors %}
+            <div class="error">{{ form.telefone.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-group">
         {{ form.data_contratacao.label_tag }}
         {{ form.data_contratacao }}
+        {% if form.data_contratacao.errors %}
+            <div class="error">{{ form.data_contratacao.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-group">
         {{ form.endereco.label_tag }}
         {{ form.endereco }}
+        {% if form.endereco.errors %}
+            <div class="error">{{ form.endereco.errors }}</div>
+        {% endif %}
     </div>
     <div class="form-check">
         {{ form.ativo }}
